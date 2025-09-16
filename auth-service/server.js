@@ -26,7 +26,7 @@ function getLocalIp() {
   return localIp;
 }
 
-const PORT = 4001;
+const PORT = 5001;
 app.listen(PORT, '0.0.0.0', () => {
   const ip = getLocalIp();
   console.log(`Auth Service running on http://${ip}:${PORT}`);
