@@ -1,0 +1,102 @@
+version: '3.8'
+
+services:
+  # Microservice 1: Admin Services
+  admin-services:
+    build: ./admin-services
+    expose:
+      - "4000"
+    environment:
+      - NODE_ENV=production
+
+  # Microservice 2: Auth
+  auth-service:
+    build: ./auth-service
+    expose:
+      - "4001"
+    environment:
+      - NODE_ENV=production
+
+  # Microservice 3: Events
+  events-service:
+    build: ./events-service
+    expose:
+      - "4002"
+    environment:
+      - NODE_ENV=production
+
+  # Microservice 4: Prayer
+  prayer-service:
+    build: ./prayer-service
+    expose:
+      - "4003"
+    environment:
+      - NODE_ENV=production
+
+  # Microservice 5: Profile
+  profile-service:
+    build: ./profile-service
+    expose:
+      - "4004"
+    environment:
+      - NODE_ENV=production
+
+  # Microservice 6: Rides
+  rides-service:
+    build: ./rides-service
+    expose:
+      - "4005"
+    environment:
+      - NODE_ENV=production
+
+  # Microservice 7: Songs
+  songs-service:
+    build: ./songs-service
+    expose:
+      - "4006"
+    environment:
+      - NODE_ENV=production
+
+  # Microservice 8: Special Prayers
+  special-prayers-service:
+    build: ./special-prayers-service
+    expose:
+      - "4007"
+    environment:
+      - NODE_ENV=production
+
+  # Microservice 9: Testimonies
+  testimonies-service:
+    build: ./testimonies-service
+    expose:
+      - "4008"
+    environment:
+      - NODE_ENV=production
+
+  # Admin Panel (React)
+  admin-panel:
+    build: ./admin-panel
+    expose:
+      - "80"
+    environment:
+      - NODE_ENV=production
+
+  # NGINX Reverse Proxy
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - admin-services
+      - auth-service
+      - events-service
+      - prayer-service
+      - profile-service
+      - rides-service
+      - songs-service
+      - special-prayers-service
+      - testimonies-service
+      - admin-panel
