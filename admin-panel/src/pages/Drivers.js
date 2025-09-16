@@ -1,0 +1,489 @@
+import React, { useState, useEffect } from "react";
+import Autocomplete from "@mui/material/Autocomplete";
+import {
+  Box, Button, Typography, Paper, Table, TableBody, TableCell, TableContainer,
+  TableHead, TableRow, Checkbox, IconButton, TextField, InputAdornment, MenuItem,
+  Select, Chip, Avatar, Dialog, DialogTitle, DialogContent, Card,
+    CardContent,
+    CardActions, DialogActions,
+} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+
+import CloseIcon from "@mui/icons-material/Close";
+
+import PeopleIcon from '@mui/icons-material/People';
+
+import PendingActionsIcon from "@mui/icons-material/PendingActions";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import CancelIcon from "@mui/icons-material/Cancel";
+import WarningIcon from '@mui/icons-material/Warning';
+import PageLoader from "../components/PageLoader";
+
+import { useUser } from "../context/UserContext";
+const statusColors = {
+  Approve: "success",
+  Pending: "warning",
+  Decline: "default"
+};
+
+function StatCard({ label, count, IconComponent }) {
+  return (
+    <Card variant="outlined" sx={{ height: "100%", minWidth: 300, width: "100%", borderRadius: 2 }}>
+      <CardContent sx={{ minHeight: 80 }}>
+        <Box display="flex" alignItems="center" sx={{ width: "100%" }}>
+          <Box
+            sx={{
+              height: 48,
+              width: 48,
+              backgroundColor: 'grey.200',
+              borderRadius: 1, // for rounded square, use '50%' for circle
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              mr: 2,
+              flexShrink: 0,
+            }}
+          >
+            <IconComponent sx={{ fontSize: 28, color: '#177373' }} />
+          </Box>
+
+          <Box sx={{ flex: 1, minWidth: 0 }}>
+            <Typography variant="h5" fontWeight="bold" noWrap>
+              {count}
+            </Typography>
+            <Typography variant="body2" color="text.secondary" noWrap>
+              {label}
+            </Typography>
+          </Box>
+        </Box>
+      </CardContent>
+    </Card>
+  );
+}
+function formatDate(dateStr) {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+}
+
+const Drivers = () => {
+  const [search, setSearch] = useState("");
+  const [status, setStatus] = useState("All Status");
+  const [users, setUsers] = useState([]);
+  const [organizations, setOrganizations] = useState([]);
+  const [organization, setOrganization] = useState(null); // or orgOptions[0] for default
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalItems, setTotalItems] = useState(0);
+  const { user } = useUser();
+  const [AllEvents, SetAllEvents]=useState(0);
+  const [UpcomingEvents, SetUpcomingEvents]=useState(0);
+  const [ThisMonthEvents, SetThisMonthEvents]=useState(0);
+  const [CompletedEvents, SetCompletedEvents]=useState(0);
+
+  const [origanisation, SetOriganisation]=useState('');
+
+const [openImage, setOpenImage] = useState(false);
+const [selectedImage, setSelectedImage] = useState(null);
+
+  const [selected, setSelected] = useState([]);
+      const [loading, setLoading] = useState(true);
+
+const API_URL = process.env.REACT_APP_API_URL;
+
+const orgOptions = [{ id: 0, org_name: "All Organizations" }, ...organizations];  const handleSelectAll = (event) => {
+    if (event.target.checked) {
+      setSelected(users.map((user) => user.id));
+    } else {
+      setSelected([]);
+    }
+  };
+
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+       try {
+       setLoading(true);
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_URL}driver-list`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          search: search,
+          status: status,
+          organization: organization?.id || null,
+          page: page,
+          pageSize: pageSize
+        })
+      });
+      const data = await response.json();
+      setUsers(data.data);
+      setTotalItems(data.total);
+      setTotalPages(data.pagination,totalPages);
+
+           } catch (err) {
+       // setError('Network error. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchUsers();
+  }, [status, organization,search,page,pageSize]);
+
+  useEffect(() => {
+    const fetchRolesAndOrganizations = async () => {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_URL}roles-organizations`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      const data = await response.json();
+      setOrganizations(data.organizations);
+
+      SetAllEvents(data.allDriversCount);
+      SetUpcomingEvents(data.activeDriversCount);
+      SetThisMonthEvents(data.pendingDriversCount);
+      SetCompletedEvents(data.declineDriversCount);
+
+
+    };
+
+    fetchRolesAndOrganizations();
+  }, []);
+
+
+const handleImageClick = (src) => {
+  setSelectedImage(src);
+  setOpenImage(true);
+};
+
+const handleClose = () => {
+  setOpenImage(false);
+  setSelectedImage(null);
+};
+
+  const handleStatusChange = async (id, status) => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${API_URL}update-driver-status`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ status: status, id: id })
+    });
+    const data = await response.json();
+    if (response.ok) {
+        alert("Status updated successfully");
+        window.location.reload();
+    
+    } else {
+      console.error('Failed to update status:', data);
+    }
+  };
+
+      if(loading) {
+      return (
+        <div>
+          {/* <button onClick={fetchData}>Load Data</button> */}
+          <PageLoader open={loading} />
+        </div>
+      );
+      }
+
+  return (
+    <Box>
+      {/* Header */}
+      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 4 }}>
+        <Box>
+          <Typography variant="h5" fontWeight={700}>Driver Management</Typography>
+          <Typography variant="body2" color="text.secondary">
+            Manage and moniter all drivers in your organization
+          </Typography>
+        </Box>
+      </Box>
+
+      <Box
+        display="flex"
+        flexDirection="row"
+        flexWrap="wrap"
+        gap={2}
+        mb={2}
+        width="100%"
+      >
+
+
+        <Box flex={1} minWidth={{ xs: "100%", sm: "220px" }}>
+          <StatCard label="Total Drivers" count={AllEvents} IconComponent={PeopleIcon} />
+        </Box>
+        <Box flex={1} minWidth={{ xs: "100%", sm: "220px" }}>
+          <StatCard label="Active Drivers" count={UpcomingEvents} IconComponent={CheckCircleIcon} />
+        </Box>
+        <Box flex={1} minWidth={{ xs: "100%", sm: "220px" }}>
+          <StatCard label="Pending Drivers" count={ThisMonthEvents} IconComponent={PendingActionsIcon} />
+        </Box>
+        <Box flex={1} minWidth={{ xs: "100%", sm: "220px" }}>
+          <StatCard label="Declined Drivers" count={CompletedEvents} IconComponent={WarningIcon} />
+        </Box>
+      </Box>
+
+       <Paper sx={{ p: 4, border: "1px solid #e0e0e0" }}>
+  {/* Top Bar: Heading (left) and Filters + Button (right) */}
+  <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 2 }}>
+    {/* Left Side: Heading */}
+    <Typography variant="h5" color="text.secondary">
+      All Drivers
+    </Typography>
+
+    {/* Right Side: Filters and Add Button */}
+    <Box sx={{ display: "flex", gap: 2, alignItems: "center", flexWrap: "wrap" }}>
+      <TextField
+        size="small"
+        placeholder="Search by driver name"
+        value={search}
+        onChange={(e) => {
+          setSearch(e.target.value);
+          setPage(1);
+        }}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          )
+        }}
+        sx={{ width: 250 }}
+      />
+
+      <Select
+        size="small"
+        value={status}
+        onChange={(e) => {
+          setStatus(e.target.value);
+          setPage(1);
+        }}
+        sx={{ width: 130 }}
+      >
+        <MenuItem value="All Status">All Status</MenuItem>
+        <MenuItem value="Pending">Pending</MenuItem>
+        <MenuItem value="Approve">Approved</MenuItem>
+        <MenuItem value="Decline">Declined</MenuItem>
+      </Select>
+  {user?.role === 1 && (
+      <Autocomplete
+        size="small"
+        value={organization}
+        onChange={(event, newValue) => {
+          setOrganization(newValue);
+          setPage(1);
+        }}
+        options={orgOptions}
+        getOptionLabel={(option) => option?.org_name || ""}
+        renderInput={(params) => <TextField {...params} label="Organization" />}
+        sx={{ width: 230 }}
+        isOptionEqualToValue={(option, value) => option.id === value.id}
+      />
+  )}
+
+    
+    </Box>
+  </Box>
+</Paper>
+
+
+      {/* Table */}
+      <Paper>
+
+        
+        <TableContainer>
+
+   
+
+          <Table>
+            <TableHead>
+              <TableRow>
+              
+                <TableCell>User</TableCell>
+                <TableCell>Vehicle Type</TableCell>
+                 <TableCell>Vehicle Number</TableCell>
+                  <TableCell>Licence</TableCell>
+                 {user?.role === 1 && (
+                 <TableCell>ORGANIZATION</TableCell>
+                 )}
+                  <TableCell>STATUS</TableCell>
+                <TableCell>ACTIONS</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+  {users.length > 0 ? (
+    users.map((user) => (
+      <TableRow key={user.id} hover>
+      
+        <TableCell>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+              {user.app_users.profile_pic ? (
+                <Avatar
+                  src={user.profile_pic}
+                  alt={user.app_users.first_name + ' '+ user.app_users.last_name}
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: 2,
+                    bgcolor: "#f3f4f6",
+                    color: "#1a4a3a",
+                    fontWeight: 700,
+                    fontSize: 20,
+                  }}
+                  imgProps={{
+                    onError: (e) => {
+                      e.target.onerror = null;
+                      e.target.src = "";
+                    },
+                  }}
+                >
+                  {user.app_users.first_name?.[0]?.toUpperCase() || "?"}
+                </Avatar>
+              ) : (
+                <Avatar
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: 2,
+                    bgcolor: "#f3f4f6",
+                    color: "#1a4a3a",
+                    fontWeight: 700,
+                    fontSize: 20,
+                  }}
+                >
+                  {user.app_users.first_name?.[0]?.toUpperCase() || "?"}
+                </Avatar>
+              )}
+            </Box>
+            <Box>
+              <Typography fontWeight={600}>
+                {user.app_users.first_name + ' '+ user.app_users.last_name} 
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+  {user.app_users.email}
+</Typography>
+
+            </Box>
+          </Box>
+        </TableCell>
+      
+        <TableCell>{user.vehicle_type}</TableCell>
+         <TableCell>{user.vehicle_number}</TableCell>
+       <TableCell>
+  <img
+    src={user.license}
+    alt="Preview"
+    style={{ maxWidth: 40, maxHeight: 40, borderRadius: 4, cursor: 'pointer' }}
+    onClick={() => handleImageClick(user.license)}
+  />
+</TableCell>
+
+          {user?.role === 1 && (
+          <TableCell>{user.origanisation.org_name}</TableCell>
+          )}
+
+           <TableCell>
+<Chip
+  label={
+    user.approve_status == 'Approve'
+      ? "Approved"
+      : user.approve_status == 'Pending'
+      ? "Pending"
+      : "Decline"
+  }
+  color={statusColors[user.approve_status]}
+  size="small"
+  sx={{ fontWeight: 600 }}
+/>
+
+
+        </TableCell>
+        <TableCell>
+           {user.approve_status === "Pending" && (
+    <>
+      <IconButton title="Approve">
+        <CheckCircleIcon color="success" fontSize="small" onClick={() => handleStatusChange(user.id, "Approve")} />
+      </IconButton>
+      <IconButton title="Decline" onClick={() => handleStatusChange(user.id, "Decline")}>
+        <CancelIcon color="error" fontSize="small" />
+      </IconButton>
+    </>
+  )}
+  {user.approve_status === "Approve" && (
+    <IconButton title="Decline" onClick={() => handleStatusChange(user.id, "Decline")}>
+      <CancelIcon color="error" fontSize="small" />
+    </IconButton>
+  )}
+  {user.approve_status === "Decline" && (
+    <IconButton title="Approve" onClick={() => handleStatusChange(user.id, "Approve")}>
+      <CheckCircleIcon color="success" fontSize="small" />
+    </IconButton>
+  )}
+        </TableCell>
+      </TableRow>
+    ))
+  ) : (
+    <TableRow>
+      <TableCell colSpan={7} sx={{ textAlign: "center" }}>
+        No Events found
+      </TableCell>
+    </TableRow>
+  )}
+</TableBody>
+
+          </Table>
+        </TableContainer>
+        {/* Pagination */}
+        {totalItems > 0 && (
+            <>
+        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", p: 2 }}>
+          <Typography variant="body2">
+                Showing {page * pageSize - pageSize + 1}-{Math.min(page * pageSize, totalItems)} of {totalItems}
+          </Typography>
+          <Box>
+            <Button variant="outlined" sx={{ minWidth: 40, mx: 1 }} onClick={() => setPage(page - 1)} disabled={page === 1}>{'<'}</Button>
+            <Button  variant="contained" sx={{ minWidth: 40, mx: 1, background: '#177373' }} onClick={() => setPage(page)}>{page}</Button>
+            <Button variant="outlined" sx={{ minWidth: 40, mx: 1 }} onClick={() => setPage(page + 1)} disabled={page === totalPages}>{'>'}</Button>
+          </Box>
+        </Box>
+ 
+        </>
+
+)}
+      </Paper>
+    
+
+{/* Image Preview */}
+
+<Dialog open={openImage} onClose={handleClose} maxWidth="md">
+  <DialogContent sx={{ position: 'relative', p: 0 }}>
+    <IconButton
+      onClick={handleClose}
+      sx={{ position: 'absolute', top: 8, right: 8, color: '#fff', zIndex: 1 }}
+    >
+      <CloseIcon />
+    </IconButton>
+    <img
+      src={selectedImage}
+      alt="Enlarged"
+      style={{ width: '100%', height: 'auto', display: 'block' }}
+    />
+  </DialogContent>
+</Dialog>
+
+
+
+    </Box>
+  );
+};
+
+export default Drivers;
