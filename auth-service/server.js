@@ -6,6 +6,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get('/test', (req, res) => {
+  res.status(200).json({ message: 'Test route working!' });
+});
 // Get local IP address function
 function getLocalIp() {
   const nets = os.networkInterfaces();
@@ -24,7 +27,7 @@ function getLocalIp() {
 }
 
 const PORT = 4001;
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   const ip = getLocalIp();
   console.log(`Auth Service running on http://${ip}:${PORT}`);
 });
