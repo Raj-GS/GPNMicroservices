@@ -93,7 +93,7 @@ services:
       - admin-services
       - auth-service
       - events-service
-      - prayer-service
+      - prayers-service
       - profile-service
       - rides-service
       - songs-service
