@@ -26,8 +26,8 @@ services:
       - NODE_ENV=production
 
   # Microservice 4: Prayer
-  prayer-service:
-    build: ./prayer-service
+  prayers-service:
+    build: ./prayers-service
     expose:
       - "4003"
     environment:
