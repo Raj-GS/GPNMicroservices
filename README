@@ -1,0 +1,28 @@
+# GPNMicroservices
+
+This repository contains the microservices for the GPN project.
+
+## Structure
+
+- Each microservice is located in its own directory.
+- Common utilities and shared libraries are in the `common` folder.
+
+## Getting Started
+
+1. Clone the repository.
+2. Install dependencies for each microservice.
+3. Follow the documentation in each microservice's README for setup and usage.
+
+## Requirements
+
+- Node.js (version X.X.X or higher)
+- Docker (optional, for containerization)
+- Other dependencies as specified in each microservice
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+
+See the LICENSE file for details.
