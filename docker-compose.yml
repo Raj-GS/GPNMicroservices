@@ -3,155 +3,271 @@ version: '3.8'
 services:
  
   # Microservice 1: Admin Services
-  admin-services:
-    build: ./admin-services
-    expose:
-      - "4000"
-    environment:
-      - NODE_ENV=production
-      - DB_HOST=45.194.3.128
-      - DB_PORT=3306
-      - DB_NAME=gpndb
-      - DB_USER=root
-      - DB_PASS=Naarace$$5
 
+  admin-services:
+
+    build: ./admin-services
+
+    ports:
+
+      - "4000:4000"
+
+    environment:
+
+      - NODE_ENV=production
+
+      - DB_HOST=45.194.3.128
+
+      - DB_PORT=3306
+
+      - DB_NAME=gpndb
+
+      - DB_USER=root
+
+      - DB_PASS=Naarace$$5
  
   # Microservice 2: Auth
-  auth-service:
-    build: ./auth-service
-    expose:
-      - "4001"
-    environment:
-      - NODE_ENV=production
-      - DB_HOST=45.194.3.128
-      - DB_PORT=3306
-      - DB_NAME=gpndb
-      - DB_USER=root
-      - DB_PASS=Naarace$$5
 
+  auth-service:
+
+    build: ./auth-service
+
+    ports:
+
+      - "4001:4001"
+
+    environment:
+
+      - NODE_ENV=production
+
+      - DB_HOST=45.194.3.128
+
+      - DB_PORT=3306
+
+      - DB_NAME=gpndb
+
+      - DB_USER=root
+
+      - DB_PASS=Naarace$$5
  
   # Microservice 3: Events
-  events-service:
-    build: ./events-service
-    expose:
-      - "4002"
-    environment:
-      - NODE_ENV=production
-      - DB_HOST=45.194.3.128
-      - DB_PORT=3306
-      - DB_NAME=gpndb
-      - DB_USER=root
-      - DB_PASS=Naarace$$5
 
+  events-service:
+
+    build: ./events-service
+
+    ports:
+
+      - "4002:4002"
+
+    environment:
+
+      - NODE_ENV=production
+
+      - DB_HOST=45.194.3.128
+
+      - DB_PORT=3306
+
+      - DB_NAME=gpndb
+
+      - DB_USER=root
+
+      - DB_PASS=Naarace$$5
  
   # Microservice 4: Prayer
-  prayers-service:
-    build: ./prayers-service
-    expose:
-      - "4003"
-    environment:
-      - NODE_ENV=production
-      - DB_HOST=45.194.3.128
-      - DB_PORT=3306
-      - DB_NAME=gpndb
-      - DB_USER=root
-      - DB_PASS=Naarace$$5
 
+  prayers-service:
+
+    build: ./prayers-service
+
+    ports:
+
+      - "4003:4003"
+
+    environment:
+
+      - NODE_ENV=production
+
+      - DB_HOST=45.194.3.128
+
+      - DB_PORT=3306
+
+      - DB_NAME=gpndb
+
+      - DB_USER=root
+
+      - DB_PASS=Naarace$$5
  
   # Microservice 5: Profile
-  profile-service:
-    build: ./profile-service
-    expose:
-      - "4004"
-    environment:
-      - NODE_ENV=production
-      - DB_HOST=45.194.3.128
-      - DB_PORT=3306
-      - DB_NAME=gpndb
-      - DB_USER=root
-      - DB_PASS=Naarace$$5
 
+  profile-service:
+
+    build: ./profile-service
+
+    ports:
+
+      - "4004:4004"
+
+    environment:
+
+      - NODE_ENV=production
+
+      - DB_HOST=45.194.3.128
+
+      - DB_PORT=3306
+
+      - DB_NAME=gpndb
+
+      - DB_USER=root
+
+      - DB_PASS=Naarace$$5
  
   # Microservice 6: Rides
-  rides-service:
-    build: ./rides-service
-    expose:
-      - "4005"
-    environment:
-      - NODE_ENV=production
-      - DB_HOST=45.194.3.128
-      - DB_PORT=3306
-      - DB_NAME=gpndb
-      - DB_USER=root
-      - DB_PASS=Naarace$$5
 
+  rides-service:
+
+    build: ./rides-service
+
+    ports:
+
+      - "4005:4005"
+
+    environment:
+
+      - NODE_ENV=production
+
+      - DB_HOST=45.194.3.128
+
+      - DB_PORT=3306
+
+      - DB_NAME=gpndb
+
+      - DB_USER=root
+
+      - DB_PASS=Naarace$$5
  
   # Microservice 7: Songs
-  songs-service:
-    build: ./songs-service
-    expose:
-      - "4006"
-    environment:
-      - NODE_ENV=production
-      - DB_HOST=45.194.3.128
-      - DB_PORT=3306
-      - DB_NAME=gpndb
-      - DB_USER=root
-      - DB_PASS=Naarace$$5
 
+  songs-service:
+
+    build: ./songs-service
+
+    ports:
+
+      - "4006:4006"
+
+    environment:
+
+      - NODE_ENV=production
+
+      - DB_HOST=45.194.3.128
+
+      - DB_PORT=3306
+
+      - DB_NAME=gpndb
+
+      - DB_USER=root
+
+      - DB_PASS=Naarace$$5
  
   # Microservice 8: Special Prayers
-  special-prayers-service:
-    build: ./special-prayers-service
-    expose:
-      - "4007"
-    environment:
-      - NODE_ENV=production
-      - DB_HOST=45.194.3.128
-      - DB_PORT=3306
-      - DB_NAME=gpndb
-      - DB_USER=root
-      - DB_PASS=Naarace$$5
 
+  special-prayers-service:
+
+    build: ./special-prayers-service
+
+    ports:
+
+      - "4007:4007"
+
+    environment:
+
+      - NODE_ENV=production
+
+      - DB_HOST=45.194.3.128
+
+      - DB_PORT=3306
+
+      - DB_NAME=gpndb
+
+      - DB_USER=root
+
+      - DB_PASS=Naarace$$5
  
   # Microservice 9: Testimonies
-  testimonies-service:
-    build: ./testimonies-service
-    expose:
-      - "4008"
-    environment:
-      - NODE_ENV=production
-      - DB_HOST=45.194.3.128
-      - DB_PORT=3306
-      - DB_NAME=gpndb
-      - DB_USER=root
-      - DB_PASS=Naarace$$5
 
+  testimonies-service:
+
+    build: ./testimonies-service
+
+    ports:
+
+      - "4008:4008"
+
+    environment:
+
+      - NODE_ENV=production
+
+      - DB_HOST=45.194.3.128
+
+      - DB_PORT=3306
+
+      - DB_NAME=gpndb
+
+      - DB_USER=root
+
+      - DB_PASS=Naarace$$5
  
   # Admin Panel (React)
+
   admin-panel:
+
     build: ./admin-panel
-    expose:
-      - "80"
+
+    ports:
+
+      - "3000:80"  # Assumes React is served on port 80 inside container
+
     environment:
+
       - NODE_ENV=production
  
   # NGINX Reverse Proxy
+
   nginx:
+
     image: nginx:latest
+
     ports:
+
       - "80:80"
+
       - "443:443"
+
     volumes:
+
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
+
     depends_on:
+
       - admin-services
+
       - auth-service
+
       - events-service
+
       - prayers-service
+
       - profile-service
+
       - rides-service
+
       - songs-service
+
       - special-prayers-service
+
       - testimonies-service
+
       - admin-panel
+
+ 
