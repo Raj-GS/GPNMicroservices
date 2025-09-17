@@ -1,6 +1,7 @@
 version: '3.8'
-
+ 
 services:
+ 
   # Microservice 1: Admin Services
   admin-services:
     build: ./admin-services
@@ -8,7 +9,12 @@ services:
       - "4000"
     environment:
       - NODE_ENV=production
-
+      - DB_HOST=172.17.0.1
+      - DB_PORT=3306
+      - DB_NAME=gpndb
+      - DB_USER=root
+      - DB_PASS=Naarace$5
+ 
   # Microservice 2: Auth
   auth-service:
     build: ./auth-service
@@ -16,7 +22,12 @@ services:
       - "4001"
     environment:
       - NODE_ENV=production
-
+      - DB_HOST=172.17.0.1
+      - DB_PORT=3306
+      - DB_NAME=gpndb
+      - DB_USER=root
+      - DB_PASS=Naarace$5
+ 
   # Microservice 3: Events
   events-service:
     build: ./events-service
@@ -24,7 +35,12 @@ services:
       - "4002"
     environment:
       - NODE_ENV=production
-
+      - DB_HOST=172.17.0.1
+      - DB_PORT=3306
+      - DB_NAME=gpndb
+      - DB_USER=root
+      - DB_PASS=Naarace$5
+ 
   # Microservice 4: Prayer
   prayers-service:
     build: ./prayers-service
@@ -32,7 +48,12 @@ services:
       - "4003"
     environment:
       - NODE_ENV=production
-
+      - DB_HOST=172.17.0.1
+      - DB_PORT=3306
+      - DB_NAME=gpndb
+      - DB_USER=root
+      - DB_PASS=Naarace$5
+ 
   # Microservice 5: Profile
   profile-service:
     build: ./profile-service
@@ -40,7 +61,12 @@ services:
       - "4004"
     environment:
       - NODE_ENV=production
-
+      - DB_HOST=172.17.0.1
+      - DB_PORT=3306
+      - DB_NAME=gpndb
+      - DB_USER=root
+      - DB_PASS=Naarace$5
+ 
   # Microservice 6: Rides
   rides-service:
     build: ./rides-service
@@ -48,7 +74,12 @@ services:
       - "4005"
     environment:
       - NODE_ENV=production
-
+      - DB_HOST=172.17.0.1
+      - DB_PORT=3306
+      - DB_NAME=gpndb
+      - DB_USER=root
+      - DB_PASS=Naarace$5
+ 
   # Microservice 7: Songs
   songs-service:
     build: ./songs-service
@@ -56,7 +87,12 @@ services:
       - "4006"
     environment:
       - NODE_ENV=production
-
+      - DB_HOST=172.17.0.1
+      - DB_PORT=3306
+      - DB_NAME=gpndb
+      - DB_USER=root
+      - DB_PASS=Naarace$5
+ 
   # Microservice 8: Special Prayers
   special-prayers-service:
     build: ./special-prayers-service
@@ -64,7 +100,12 @@ services:
       - "4007"
     environment:
       - NODE_ENV=production
-
+      - DB_HOST=172.17.0.1
+      - DB_PORT=3306
+      - DB_NAME=gpndb
+      - DB_USER=root
+      - DB_PASS=Naarace$5
+ 
   # Microservice 9: Testimonies
   testimonies-service:
     build: ./testimonies-service
@@ -72,7 +113,12 @@ services:
       - "4008"
     environment:
       - NODE_ENV=production
-
+      - DB_HOST=172.17.0.1
+      - DB_PORT=3306
+      - DB_NAME=gpndb
+      - DB_USER=root
+      - DB_PASS=Naarace$5
+ 
   # Admin Panel (React)
   admin-panel:
     build: ./admin-panel
@@ -80,7 +126,7 @@ services:
       - "80"
     environment:
       - NODE_ENV=production
-
+ 
   # NGINX Reverse Proxy
   nginx:
     image: nginx:latest
