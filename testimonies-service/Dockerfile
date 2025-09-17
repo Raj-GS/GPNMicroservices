@@ -13,6 +13,9 @@ RUN npm install --production
 # Copy source code
 COPY . .
 
+# Run prisma generate
+RUN npx prisma generate
+
 # Expose port
 EXPOSE 4008
 
