@@ -13,7 +13,8 @@ services:
       - DB_PORT=3306
       - DB_NAME=gpndb
       - DB_USER=root
-      - DB_PASS=Naarace\$5
+      - DB_PASS=Naarace$$5
+
  
   # Microservice 2: Auth
   auth-service:
@@ -26,7 +27,8 @@ services:
       - DB_PORT=3306
       - DB_NAME=gpndb
       - DB_USER=root
-      - DB_PASS=Naarace\$5
+      - DB_PASS=Naarace$$5
+
  
   # Microservice 3: Events
   events-service:
@@ -39,7 +41,8 @@ services:
       - DB_PORT=3306
       - DB_NAME=gpndb
       - DB_USER=root
-      - DB_PASS=Naarace\$5
+      - DB_PASS=Naarace$$5
+
  
   # Microservice 4: Prayer
   prayers-service:
@@ -52,7 +55,8 @@ services:
       - DB_PORT=3306
       - DB_NAME=gpndb
       - DB_USER=root
-      - DB_PASS=Naarace\$5
+      - DB_PASS=Naarace$$5
+
  
   # Microservice 5: Profile
   profile-service:
@@ -65,7 +69,8 @@ services:
       - DB_PORT=3306
       - DB_NAME=gpndb
       - DB_USER=root
-      - DB_PASS=Naarace\$5
+      - DB_PASS=Naarace$$5
+
  
   # Microservice 6: Rides
   rides-service:
@@ -78,7 +83,8 @@ services:
       - DB_PORT=3306
       - DB_NAME=gpndb
       - DB_USER=root
-      - DB_PASS=Naarace\$5
+      - DB_PASS=Naarace$$5
+
  
   # Microservice 7: Songs
   songs-service:
@@ -91,7 +97,8 @@ services:
       - DB_PORT=3306
       - DB_NAME=gpndb
       - DB_USER=root
-      - DB_PASS=Naarace\$5
+      - DB_PASS=Naarace$$5
+
  
   # Microservice 8: Special Prayers
   special-prayers-service:
@@ -104,7 +111,8 @@ services:
       - DB_PORT=3306
       - DB_NAME=gpndb
       - DB_USER=root
-      - DB_PASS=Naarace\$5
+      - DB_PASS=Naarace$$5
+
  
   # Microservice 9: Testimonies
   testimonies-service:
@@ -117,7 +125,8 @@ services:
       - DB_PORT=3306
       - DB_NAME=gpndb
       - DB_USER=root
-      - DB_PASS=Naarace\$5
+      - DB_PASS=Naarace$$5
+
  
   # Admin Panel (React)
   admin-panel:
