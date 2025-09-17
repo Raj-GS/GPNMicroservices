@@ -104,7 +104,7 @@ export default function PrayerHub() {
   const [PendingPrayers, SetPendingPrayers]=useState(0);
   const [AnsweredPrayers, SetAnsweredPrayers]=useState(0);
   const [DeclinePrayers, SetADeclinePrayers]=useState(0);
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000/api/admin/';
+const API_URL = process.env.REACT_APP_API_URL || 'http://45.194.3.128:4000/api/admin/';
     const [loading, setLoading] = useState(true);
 
   useEffect(() => {

@@ -13,7 +13,7 @@ export default function YoutubeSettings({biblestudy, worship}) {
     const[biblestudyChannelId, setbiblestudyChannelId] = useState(biblestudy.channelId || '');
     const [bid, setBId] = useState(null);
     const [wid, setwId] = useState(null);
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000/api/admin/';
+const API_URL = process.env.REACT_APP_API_URL || 'http://45.194.3.128:4000/api/admin/';
 
     const handleChange = (index, field, value) => {
         console.log(`Changing ${field} for ${rows[index].module} to ${value}`);

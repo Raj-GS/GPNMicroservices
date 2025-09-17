@@ -12,7 +12,7 @@ const ApprovalSettings = ({ approvals }) => {
         const [backgroundBv, setBackgroundBv] = useState('no');
         const [rideApproval, setRideApproval] = useState('no');
         const [rideBv, setRideBv] = useState('no');
-        const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000/api/admin/';
+        const API_URL = process.env.REACT_APP_API_URL || 'http://45.194.3.128:4000/api/admin/';
 
 useEffect(() => {
     if (approvals) {

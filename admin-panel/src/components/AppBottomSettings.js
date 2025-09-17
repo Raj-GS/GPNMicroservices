@@ -8,7 +8,7 @@ export default function AppBottomSettings({ mySettings }) {
     const [eventsEnabled, setEventsEnabled] = useState('no');
     const [testimonyEnabled, setTestimonyEnabled] = useState('no');
     const [id, setId] = useState(null);
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000/api/admin/';
+const API_URL = process.env.REACT_APP_API_URL || 'http://45.194.3.128:4000/api/admin/';
     useEffect(() => {
         if (mySettings && mySettings.length > 0) {
             const orgSettings = mySettings[0]; // first org's settings

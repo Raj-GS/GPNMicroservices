@@ -32,7 +32,7 @@ const [selected, setSelected] = useState([]);
 const orgOptions = [{ id: 0, org_name: "All Organizations" }, ...organizations];
 const { user } = useUser();
 const [addCategory, setAddCategory] = useState(false);
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000/api/admin/';
+const API_URL = process.env.REACT_APP_API_URL || 'http://45.194.3.128:4000/api/admin/';
     const [loading, setLoading] = useState(true);
 
   // Fetch category data (mock or API)

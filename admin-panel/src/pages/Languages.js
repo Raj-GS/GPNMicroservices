@@ -37,7 +37,7 @@ const Languages = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [languageId, setLanguageId] = useState(null);
-  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000/api/admin/';
+  const API_URL = process.env.REACT_APP_API_URL || 'http://45.194.3.128:4000/api/admin/';
   const handleOpen = (lang = null) => {
     setEditing(lang);
     setLanguageId(lang ? lang.id : null);

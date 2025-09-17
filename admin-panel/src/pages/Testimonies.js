@@ -108,7 +108,7 @@ export default function Testimonies() {
 
   const [editTestimonyId, setEditTestimonyId] = useState(null);
   const [openEditDialog, setOpenEditDialog] = useState(false);
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000/api/admin/';
+const API_URL = process.env.REACT_APP_API_URL || 'http://45.194.3.128:4000/api/admin/';
 
    const [loading, setLoading] = useState(true);
 

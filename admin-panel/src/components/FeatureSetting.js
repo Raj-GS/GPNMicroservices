@@ -3,7 +3,7 @@ import { Box, Button } from '@mui/material';
 
 const FeatureSettings = ({ mySettings }) => {  // destructure props here
   const [rideEnabled, setRideEnabled] = useState('no');
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000/api/admin/';
+const API_URL = process.env.REACT_APP_API_URL || 'http://45.194.3.128:4000/api/admin/';
   useEffect(() => {
     if (mySettings && mySettings.length > 0) {
             setRideEnabled(mySettings[0].ride || "no");

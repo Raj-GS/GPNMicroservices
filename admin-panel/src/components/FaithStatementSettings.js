@@ -4,7 +4,7 @@ import "react-quill/dist/quill.snow.css"; // import styles
 const FaithStatementSettings = ({ mySettings }) => {
     const [faithstatement, setFaithstatement] = useState('');
     const [id, setId] = useState(null);
-    const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000/api/admin/';
+    const API_URL = process.env.REACT_APP_API_URL || 'http://45.194.3.128:4000/api/admin/';
 
 
     const handleCancel = () => {

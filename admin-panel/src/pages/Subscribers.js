@@ -32,7 +32,7 @@ const Subscribers = () => {
   const [pageSize, setPageSize] = useState(10);
   const [totalPages, setTotalPages] = useState(1);
   const [totalItems, setTotalItems] = useState(0);
-  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000/api/admin/';
+  const API_URL = process.env.REACT_APP_API_URL || 'http://45.194.3.128:4000/api/admin/';
   const orgOptions = [{ id: 0, org_name: "All Organizations" }, ...organizations];  const handleSelectAll = (event) => {
     if (event.target.checked) {
       setSelected(users.map((user) => user.id));

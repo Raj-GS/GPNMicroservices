@@ -18,7 +18,7 @@ const songs = [
 const PdfSongs = () => {
     const [selectedPdf, setSelectedPdf] = useState(null);
     const [pdfs, setSongs] = useState([]);
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000/api/admin/';
+const API_URL = process.env.REACT_APP_API_URL || 'http://45.194.3.128:4000/api/admin/';
     const handlePdfClick = (pdfUrl) => {
         setSelectedPdf(pdfUrl);
     };

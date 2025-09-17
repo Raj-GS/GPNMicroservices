@@ -16,7 +16,7 @@ const RolesPermissions = () => {
   const [permissions, setPermissions] = useState([]);
   const [selectedRole, setSelectedRole] = useState('');
   const [rolePermissions, setRolePermissions] = useState({}); // keyed by permission_id
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000/api/admin/';
+const API_URL = process.env.REACT_APP_API_URL || 'http://45.194.3.128:4000/api/admin/';
   useEffect(() => {
     const fetchRolesAndPermissions = async () => {
       const token = localStorage.getItem('token');

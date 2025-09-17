@@ -61,7 +61,7 @@ const [devotionType, setDevotionType] = useState(true); // default to true or fa
   const [categories, setCategories] = useState([]);
 
 const [prayForNationEnabled, setPrayForNationEnabled] = useState(false);
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000/api/admin/';
+const API_URL = process.env.REACT_APP_API_URL || 'http://45.194.3.128:4000/api/admin/';
      const navigate = useNavigate();
    const [loading, setLoading] = useState(true);
    

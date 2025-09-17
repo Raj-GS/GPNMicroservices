@@ -110,7 +110,7 @@ const AppHomeSettings = ({ mySettings }) => {
     const [worshipImg, setworshipImg] = useState('');
     const [id, setId] = useState(null);
 const fileMeta = [];
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000/api/admin/';
+const API_URL = process.env.REACT_APP_API_URL || 'http://45.194.3.128:4000/api/admin/';
 const Image_URL = process.env.REACT_APP_Image_URL;
 
     // Dynamically set from mySettings

@@ -48,7 +48,7 @@ const Users = () => {
   const  [openViewDialog, setOpenViewDialog] = useState(false);
   const [Bulkstatus, setBulkstatus] = useState(1); // Default status for adding to My Songs
   const orgOptions = [{ id: 0, org_name: "All Organizations" }, ...organizations];
-  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000/api/admin/';
+  const API_URL = process.env.REACT_APP_API_URL || 'http://45.194.3.128:4000/api/admin/';
     const [loading, setLoading] = useState(true);
   
 // Handle "Select All"

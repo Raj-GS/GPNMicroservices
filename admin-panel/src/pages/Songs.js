@@ -52,7 +52,7 @@ const [selectedSongs, setSelectedSongs] = useState([]);
 
 const [DisplayType, setDisplayType] = useState('Both'); // default to true or false based on your app
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000/api/admin/';
+const API_URL = process.env.REACT_APP_API_URL || 'http://45.194.3.128:4000/api/admin/';
   const [eventName, seteventName] = useState('');
   const [description, Setdescription]=useState('');
    const [loading, setLoading] = useState(true);

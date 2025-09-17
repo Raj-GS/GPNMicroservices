@@ -32,7 +32,7 @@ const MyProfile = () => {
   const fileInputRef = useRef();
   const [editOrg, setEditOrg] = useState({});
   const [editOrgMode, setEditOrgMode] = useState(false);
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000/api/admin/';
+const API_URL = process.env.REACT_APP_API_URL || 'http://45.194.3.128:4000/api/admin/';
   useEffect(() => {
     const fetchProfile = async () => {
       setLoading(true);

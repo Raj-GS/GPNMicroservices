@@ -48,7 +48,7 @@ const Organizations = () => {
   const [editOrg, setEditOrg] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
   const [Bulkstatus, setBulkstatus] = useState(1); // Default status for adding to My Songs
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000/api/admin/';
+const API_URL = process.env.REACT_APP_API_URL || 'http://45.194.3.128:4000/api/admin/';
   const handleEditOrganization = (org) => {
     setEditOrg(org);
   };

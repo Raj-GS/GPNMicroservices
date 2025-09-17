@@ -37,7 +37,7 @@ const Roles = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [roleId, setRoleId] = useState(null);
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:2000/api/admin/';
+const API_URL = process.env.REACT_APP_API_URL || 'http://45.194.3.128:4000/api/admin/';
   const handleOpen = (role = null) => {
     setEditing(role);
     setRoleId(role ? role.id : null);
