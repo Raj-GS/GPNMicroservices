@@ -14,6 +14,8 @@ services:
 
     environment:
 
+      - DATABASE_URL=mysql://root:Naarace%245@45.194.3.128:3306/gpndb
+
       - NODE_ENV=production
 
       - DB_HOST=45.194.3.128
@@ -37,6 +39,8 @@ services:
       - "4001:4001"
 
     environment:
+
+      - DATABASE_URL=mysql://root:Naarace%245@45.194.3.128:3306/gpndb
 
       - NODE_ENV=production
 
@@ -62,6 +66,8 @@ services:
 
     environment:
 
+      - DATABASE_URL=mysql://root:Naarace%245@45.194.3.128:3306/gpndb
+
       - NODE_ENV=production
 
       - DB_HOST=45.194.3.128
@@ -85,6 +91,8 @@ services:
       - "4003:4003"
 
     environment:
+
+      - DATABASE_URL=mysql://root:Naarace%245@45.194.3.128:3306/gpndb
 
       - NODE_ENV=production
 
@@ -110,6 +118,8 @@ services:
 
     environment:
 
+      - DATABASE_URL=mysql://root:Naarace%245@45.194.3.128:3306/gpndb
+
       - NODE_ENV=production
 
       - DB_HOST=45.194.3.128
@@ -133,6 +143,8 @@ services:
       - "4005:4005"
 
     environment:
+
+      - DATABASE_URL=mysql://root:Naarace%245@45.194.3.128:3306/gpndb
 
       - NODE_ENV=production
 
@@ -158,6 +170,8 @@ services:
 
     environment:
 
+      - DATABASE_URL=mysql://root:Naarace%245@45.194.3.128:3306/gpndb
+
       - NODE_ENV=production
 
       - DB_HOST=45.194.3.128
@@ -182,6 +196,8 @@ services:
 
     environment:
 
+      - DATABASE_URL=mysql://root:Naarace%245@45.194.3.128:3306/gpndb
+
       - NODE_ENV=production
 
       - DB_HOST=45.194.3.128
@@ -205,6 +221,8 @@ services:
       - "4008:4008"
 
     environment:
+
+      - DATABASE_URL=mysql://root:Naarace%245@45.194.3.128:3306/gpndb
 
       - NODE_ENV=production
 
