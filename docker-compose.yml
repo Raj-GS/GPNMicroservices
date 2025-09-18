@@ -14,20 +14,20 @@ services:
 
     environment:
 
-      - DATABASE_URL=mysql://root:Naarace%245@45.194.3.128:3306/gpndb
+      - DATABASE_URL=mysql://root:hVAudKbartLeUpMS@ap-south-noi-1-dbaas.acecloudhosting.com:10000/gpndb
 
       - NODE_ENV=production
 
-      - DB_HOST=45.194.3.128
+      - DB_HOST=ap-south-noi-1-dbaas.acecloudhosting.com
 
-      - DB_PORT=3306
+      - DB_PORT=10000
 
       - DB_NAME=gpndb
 
       - DB_USER=root
 
-      - DB_PASS=Naarace$$5
- 
+      - DB_PASS=hVAudKbartLeUpMS
+
   # Microservice 2: Auth
 
   auth-service:
