@@ -16,6 +16,8 @@ services:
 
       - DATABASE_URL=mysql://root:hVAudKbartLeUpMS@a7a91424cc419.ap-south-noi-1-dbaas.acecloudhosting.com:10000/gpndb?sslaccept=stric
 
+      - JWT_SECRET=eb4433b1cc5236fc883e660b5f7d153d9889d45332ba057ebcffe66cd95ee865a494d074b40a0aa4418395771879f81179bf656a7a4716a25e6e582e997ee471
+
       - NODE_ENV=production
 
       - DB_HOST=a7a91424cc419.ap-south-noi-1-dbaas.acecloudhosting.com
