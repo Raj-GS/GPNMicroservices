@@ -8,7 +8,8 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:3000",
   "http://127.0.0.1:3000",
-  "https://gpn-admin-panel.onrender.com"
+  "https://gpn-admin-panel.onrender.com",
+  "http://45.194.3.128:3000"
 ];
 
 // CORS configuration
