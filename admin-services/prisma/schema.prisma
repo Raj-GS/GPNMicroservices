@@ -52,7 +52,7 @@ model app_users {
   group_member              Int                         @default(0)
   is_staff_admin            app_users_is_staff_admin    @default(no)
   status                    app_users_status
-  origanisation             origanisation               @relation(fields: [org_id], references: [id], onUpdate: Restrict, map: "app_users_ibfk_1")
+  origanisation             origanisation               @relation(fields: [org_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "app_users_ibfk_1")
   languages                 languages                   @relation(fields: [language_id], references: [id], onDelete: Cascade, map: "user_language_id")
   roles                     roles                       @relation(fields: [role], references: [id], onDelete: Cascade, map: "user_type_reference")
   biblestudy_views          biblestudy_views[]
@@ -60,7 +60,6 @@ model app_users {
   feedback                  feedback[]
   organisation_user         organisation_user[]
   pray_requests             pray_requests[]
-  pray_requests_data        pray_requests_data[]
   prayer_comments           prayer_comments[]
   prayer_like               prayer_like[]
   readcount                 readcount[]
@@ -197,7 +196,7 @@ model events {
   image          String?       @db.VarChar(200)
   status         events_status
   created_at     DateTime      @default(now()) @db.Timestamp(0)
-  updated_at     DateTime      @default(dbgenerated("('0000-00-00 00:00:00')")) @db.Timestamp(0)
+  updated_at     DateTime      @default(dbgenerated("'0000-00-00 00:00:00'")) @db.Timestamp(0)
   deleted_at     DateTime?     @db.DateTime(0)
   origanisation  origanisation @relation(fields: [org_id], references: [id], onDelete: Cascade, map: "eorg_id_reference")
 
@@ -511,34 +510,33 @@ model pray_for_nation {
 }
 
 model pray_requests {
-  id                 BigInt                      @id @default(autoincrement()) @db.UnsignedBigInt
-  subcategory_id     String?                     @db.VarChar(255)
-  pinned             pray_requests_pinned        @default(false)
-  importance         pray_requests_importance?   @default(medium)
-  category_id        BigInt                      @db.UnsignedBigInt
-  title              String                      @db.VarChar(255)
-  description        String                      @db.Text
-  edit_description   String?                     @db.Text
-  user_id            Int                         @db.UnsignedInt
-  org_id             BigInt                      @db.UnsignedBigInt
-  checked            Int?                        @default(0)
-  is_answerd         Int?                        @default(0)
-  is_approved        String?                     @db.VarChar(11)
-  is_clicked         Int                         @default(0)
-  deleted_at         DateTime?                   @db.Timestamp(0)
-  created_at         DateTime?                   @db.Timestamp(0)
-  updated_at         DateTime?                   @db.Timestamp(0)
-  edit_request       pray_requests_edit_request?
-  answered_at        DateTime?                   @db.Timestamp(0)
-  edit_prayer        edit_prayer[]
-  categories         categories                  @relation(fields: [category_id], references: [id], onDelete: Cascade, map: "pcategory_id_reference")
-  origanisation      origanisation               @relation(fields: [org_id], references: [id], onDelete: Cascade, map: "porg_id_reference")
-  app_users          app_users                   @relation(fields: [user_id], references: [id], onDelete: Cascade, map: "puser_id_reference")
-  pray_requests_data pray_requests_data[]
-  prayer_comments    prayer_comments[]
-  prayer_like        prayer_like[]
-  testimonies        testimonies[]
-  testimony_like     testimony_like[]
+  id               BigInt                      @id @default(autoincrement()) @db.UnsignedBigInt
+  subcategory_id   String?                     @db.VarChar(255)
+  pinned           pray_requests_pinned        @default(false)
+  importance       pray_requests_importance?   @default(medium)
+  category_id      BigInt                      @db.UnsignedBigInt
+  title            String                      @db.VarChar(255)
+  description      String                      @db.Text
+  edit_description String?                     @db.Text
+  user_id          Int                         @db.UnsignedInt
+  org_id           BigInt                      @db.UnsignedBigInt
+  checked          Int?                        @default(0)
+  is_answerd       Int?                        @default(0)
+  is_approved      String?                     @db.VarChar(11)
+  is_clicked       Int                         @default(0)
+  deleted_at       DateTime?                   @db.Timestamp(0)
+  created_at       DateTime?                   @db.Timestamp(0)
+  updated_at       DateTime?                   @db.Timestamp(0)
+  edit_request     pray_requests_edit_request?
+  answered_at      DateTime?                   @db.Timestamp(0)
+  edit_prayer      edit_prayer[]
+  categories       categories                  @relation(fields: [category_id], references: [id], onDelete: Cascade, map: "pcategory_id_reference")
+  origanisation    origanisation               @relation(fields: [org_id], references: [id], onDelete: Cascade, map: "porg_id_reference")
+  app_users        app_users                   @relation(fields: [user_id], references: [id], onDelete: Cascade, map: "puser_id_reference")
+  prayer_comments  prayer_comments[]
+  prayer_like      prayer_like[]
+  testimonies      testimonies[]
+  testimony_like   testimony_like[]
 
   @@index([category_id], map: "pcategory_id_reference")
   @@index([org_id], map: "porg_id_reference")
@@ -546,15 +544,12 @@ model pray_requests {
 }
 
 model pray_requests_data {
-  id            BigInt        @id @default(autoincrement()) @db.UnsignedBigInt
-  user_id       Int           @db.UnsignedInt
-  prayer_id     BigInt        @db.UnsignedBigInt
-  created_at    DateTime?     @db.Timestamp(0)
-  updated_at    DateTime?     @db.Timestamp(0)
+  id            BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  user_id       Int       @db.UnsignedInt
+  prayer_id     BigInt    @db.UnsignedBigInt
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
   reaction_type Int
-  pray_requests pray_requests @relation(fields: [prayer_id], references: [id], onDelete: Cascade, map: "pr_prayer_id_reference")
-  app_users     app_users     @relation(fields: [user_id], references: [id], onDelete: Cascade, map: "pr_user_id_reference")
-  reactions     reactions     @relation(fields: [reaction_type], references: [id], onDelete: Cascade, map: "reaction_id_reference")
 
   @@index([prayer_id], map: "pr_prayer_id_reference")
   @@index([user_id], map: "pr_user_id_reference")
@@ -609,10 +604,9 @@ model privateprayer_feedback {
 }
 
 model reactions {
-  id                 Int                  @id @default(autoincrement())
-  type               String               @db.VarChar(50)
-  created_at         DateTime             @default(now()) @db.Timestamp(0)
-  pray_requests_data pray_requests_data[]
+  id         Int      @id @default(autoincrement())
+  type       String   @db.VarChar(50)
+  created_at DateTime @default(now()) @db.Timestamp(0)
 }
 
 model readcount {
@@ -800,7 +794,7 @@ model settings {
   hdailydevotiondefault settings_hdailydevotiondefault @default(yes)
   faith_statement       String?                        @db.Text
   created_at            DateTime                       @default(now()) @db.Timestamp(0)
-  updated_at            DateTime                       @default(dbgenerated("('0000-00-00 00:00:00')")) @db.Timestamp(0)
+  updated_at            DateTime                       @default(dbgenerated("'0000-00-00 00:00:00'")) @db.Timestamp(0)
   songs_display         settings_songs_display         @default(Both)
   ride                  settings_ride?                 @default(yes)
   common_prayers        settings_common_prayers        @default(yes)
@@ -1050,37 +1044,6 @@ model wp_postmeta {
 
   @@index([meta_key(length: 191)], map: "meta_key")
   @@index([post_id], map: "post_id")
-}
-
-model wp_posts {
-  ID                    BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
-  post_author           BigInt   @default(0) @db.UnsignedBigInt
-  post_date             DateTime @default(dbgenerated("('0000-00-00 00:00:00')")) @db.DateTime(0)
-  post_date_gmt         DateTime @default(dbgenerated("('0000-00-00 00:00:00')")) @db.DateTime(0)
-  post_content          String   @db.LongText
-  post_title            String   @db.Text
-  post_excerpt          String   @db.Text
-  post_status           String   @default("publish") @db.VarChar(20)
-  comment_status        String   @default("open") @db.VarChar(20)
-  ping_status           String   @default("open") @db.VarChar(20)
-  post_password         String   @default("") @db.VarChar(255)
-  post_name             String   @default("") @db.VarChar(200)
-  to_ping               String   @db.Text
-  pinged                String   @db.Text
-  post_modified         DateTime @default(dbgenerated("('0000-00-00 00:00:00')")) @db.DateTime(0)
-  post_modified_gmt     DateTime @default(dbgenerated("('0000-00-00 00:00:00')")) @db.DateTime(0)
-  post_content_filtered String   @db.LongText
-  post_parent           BigInt   @default(0) @db.UnsignedBigInt
-  guid                  String   @default("") @db.VarChar(255)
-  menu_order            Int      @default(0)
-  post_type             String   @default("post") @db.VarChar(20)
-  post_mime_type        String   @default("") @db.VarChar(100)
-  comment_count         BigInt   @default(0)
-
-  @@index([post_author], map: "post_author")
-  @@index([post_name(length: 191)], map: "post_name")
-  @@index([post_parent], map: "post_parent")
-  @@index([post_type, post_status, post_date, ID], map: "type_status_date")
 }
 
 model songs_lyrics {
