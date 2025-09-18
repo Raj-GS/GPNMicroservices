@@ -14,7 +14,7 @@ services:
 
     environment:
 
-      - DATABASE_URL="mysql://root:hVAudKbartLeUpMS@a7a91424cc419.ap-south-noi-1-dbaas.acecloudhosting.com:10000/gpndb?sslaccept=stric"
+      - DATABASE_URL=mysql://root:hVAudKbartLeUpMS@a7a91424cc419.ap-south-noi-1-dbaas.acecloudhosting.com:10000/gpndb?sslaccept=stric
 
       - NODE_ENV=production
 
