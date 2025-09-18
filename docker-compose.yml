@@ -14,19 +14,21 @@ services:
 
     environment:
 
-      - DATABASE_URL=mysql://root:Naarace%245@45.194.3.128:3306/gpndb
+      - DATABASE_URL=mysql://root:hVAudKbartLeUpMS@a7a91424cc419.ap-south-noi-1-dbaas.acecloudhosting.com:10000/gpndb?sslaccept=stric
+
+      - JWT_SECRET=eb4433b1cc5236fc883e660b5f7d153d9889d45332ba057ebcffe66cd95ee865a494d074b40a0aa4418395771879f81179bf656a7a4716a25e6e582e997ee471
 
       - NODE_ENV=production
 
-      - DB_HOST=45.194.3.128
+      - DB_HOST=a7a91424cc419.ap-south-noi-1-dbaas.acecloudhosting.com
 
-      - DB_PORT=3306
+      - DB_PORT=10000
 
       - DB_NAME=gpndb
 
       - DB_USER=root
 
-      - DB_PASS=Naarace$$5
+      - DB_PASS=hVAudKbartLeUpMS
 
   # Microservice 2: Auth
 
