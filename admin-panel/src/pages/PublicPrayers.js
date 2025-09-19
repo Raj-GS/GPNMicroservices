@@ -604,6 +604,8 @@ const handleViewDialogClose = () => {
 
             <TextField
               label="Prayer Request"
+
+             inputProps={{ 'data-testid': 'prayer-request-input' }}
               multiline
               rows={4}
               fullWidth

@@ -30,6 +30,20 @@ services:
 
       - DB_PASS=hVAudKbartLeUpMS
 
+      - EMAIL_HOST=believe.herosite.pro
+
+      - EMAIL_PORT=587
+
+      - EMAIL_SECURE=false
+
+      - EMAIL_USER=admin@glocalprayer.net
+
+      - EMAIL_PASS=Admin@123
+
+      - EMAIL_FROM=admin@glocalprayer.net
+      
+      - EMAIL_FROM_NAME=Glocal Prayer Network
+
   # Microservice 2: Auth
 
   auth-service:
